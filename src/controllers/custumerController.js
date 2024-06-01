@@ -58,6 +58,7 @@ controller.update = (req, res) =>{
     const newCustomer = req.body;
     req.getConnection ((err,conn) =>{
         conn.query('UPDATE customer set ? WHERE id = ?', [newCustomer, id], (err, rows) =>{
+            console.log(err);
             res.redirect('/');
 
         });

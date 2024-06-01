@@ -12,7 +12,7 @@ CREATE TABLE users (
 CREATE TABLE customer(
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
-    nombre_du INT NOT NULL,
+    nombre_du VARCHAR(100) NOT NULL,
     nombre_mascota VARCHAR(100) NOT NULL,
     especie VARCHAR(50) NOT NULL,
     raza VARCHAR(50),
