@@ -39,11 +39,15 @@ app.use(express.urlencoded({ extended: false }));
 
 // Variables de sesión
 const session = require('express-session');
+const MemoryStore = require('memorystore')(session)
 app.set('trust proxy', 1);
 app.use(session({
     secret: 'secret',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MemoryStore({
+        checkPeriod: 86400000 // prune expired entries every 24h
+    })
 }));
 
 // Rutas
