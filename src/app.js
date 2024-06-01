@@ -39,6 +39,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Variables de sesión
 const session = require('express-session');
+app.set('trust proxy', 1);
 app.use(session({
     secret: 'secret',
     resave: true,
