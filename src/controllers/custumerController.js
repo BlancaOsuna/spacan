@@ -23,15 +23,17 @@ controller.list = (req, res) => {
     });
 };
 
-controller.save = (req,res) =>{
+controller.save = (req,res) => {
+    console.log('agendar cita');
     const data = req.body;
     data.user_id = req.session.user_id;
+
+    console.log(data);
 
 req.getConnection((err, conn)=> {
     conn.query('INSERT INTO customer set ?', [data], (err, customer) =>{
         console.log(customer);
         res.redirect('/');
-
     });
 });
 };
