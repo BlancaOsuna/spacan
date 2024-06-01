@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="body-login">
+
+    <aside>
+        <img src="/imag/p.png" alt="">
+        <h1 style="color: #f5f5f5f5;">Bienvenido De Nuevo</h1>
+   </aside>
+
+    <main>
+	<div class="login-form">
+		<h1>Inicia Sesión</h1>
+		<form action="auth" method="POST">
+			<input type="text" name="user" placeholder="User" autofocus required>
+			<input type="password" name="pass" placeholder="Password" required>
+            <input type="submit" class="btn-login" value="Login">
+		</form>
+        
+    
+        <div class="button-container" style="text-align: center;">
+		<a href="register" class="btn-register">Register</a>
+    </div>
+     </div>
+    </main>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if (typeof alert != "undefined")  { %>
+        <script>
+        Swal.fire({
+          title:'<%= alertTittle %>',
+          text:'<%= alertMessage %>',
+          icon:'<%= alertIcon %>',
+          showConfirmButton: <%= showConfirmButton %>,
+          timer: <%= timer %>
+        }).then(()=>{
+          window.location='/<%= ruta %>'
+        })
+        </script>
+       <% } %>
+</body>
+</html>

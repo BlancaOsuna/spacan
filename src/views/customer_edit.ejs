@@ -1,0 +1,48 @@
+<%- include('partials/header') %>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/update/<%= data.id %>" method="post">
+                        <div class="form-group">
+                            <input type="text" name="nombre_du" value="<%= data.nombre_du %>" placeholder="Nombre Dueño" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" name="nombre_mascota" value="<%= data.nombre_mascota %>" placeholder="nombre mascota" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" name="especie" value="<%= data.especie %>" placeholder="especie" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" name="raza" value="<%= data.raza %>" placeholder="raza" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="date" name="fecha_cita" value="<%= data.fecha_cita %>" placeholder="fecha cita" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="time" name="hora_cita" value="<%= data.hora_cita %>" placeholder="hora cita" class="form-control">
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary">
+                            Edit Appointment
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<%- include ('partials/footer') %>

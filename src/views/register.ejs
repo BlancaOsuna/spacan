@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Register</title>
+</head>
+<body class="body-register">
+
+
+    <aside>
+         <img src="/imag/p.png" alt="">
+         <h1 style="color: #f5f5f5f5;">Bienvenido Al Registro</h1>
+    </aside>
+
+    <main>
+    <div class="register-form">
+		<h1 style="text-align: center;">Form Registration</h1>
+		<form action="/register" method="POST">
+            <label for="user" style="color: #7a7a7a">Usuario</label>
+                <input type="text" name="user" required tabindex="1" autofocus>            
+            <label for="user" style="color: #7a7a7a">Nombre completo</label>
+                <input type="text" name="name" required tabindex="2">
+            
+                <label for="correo" style="color: #7a7a7a">Correo</label>
+                <input type="text" name="correo" required tabindex="3">
+
+                <label for="celular" style="color: #7a7a7a">Celular</label>
+                <input type="text" name="celular" required tabindex="4">
+
+             <br> 
+            <label for="pass" style="color: #7a7a7a">Password</label>
+			    <input type="password" name="pass" required tabindex="5">
+                <div class="button-container">
+                    <a href="/login" class="btn-cancel">Cancel</a>
+                    <input type="submit" class="btn-save" value="Save">
+                </div>
+		</form>		
+	</div>
+</main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if (typeof alert != "undefined")  { %>
+        <script>
+        Swal.fire({
+          title:'<%= alertTittle %>',
+          text:'<%= alertMessage %>',
+          icon:'<%= alertIcon %>',
+          showConfirmButton: <%= showConfirmButton %>,
+          timer: <%= timer %>
+        }).then(()=>{
+          window.location='/<%= ruta %>'
+        })
+        </script>
+       <% } %>
+ </div>
+</body>
+</html>

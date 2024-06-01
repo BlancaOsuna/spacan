@@ -1,0 +1,103 @@
+<%- include('partials/header') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+
+
+    <title>Agendar cita</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-7">
+                <table class="table table-bordered table-hover flexible-table">
+                    <thead>
+                        <tr>
+                            <th>n°</th>
+                            <th>Nombre Dueño</th>
+                            <th>Nombre Mascota</th>
+                            <th>Especie</th>
+                            <th>Raza</th>
+                            <th>Fecha Cita</th>
+                            <th>Hora Cita</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (data) { %>
+                            <% for (var i = 0; i < data.length; i++) { %>
+                                <tr>
+                                    <td><%= (i + 1) %></td>
+                                    <td><%= data[i].nombre_du %></td>
+                                    <td><%= data[i].nombre_mascota %></td>
+                                    <td><%= data[i].especie %></td>
+                                    <td><%= data[i].raza %></td>
+                                    <td><%= data[i].fecha_cita %></td>
+                                    <td><%= data[i].hora_cita %></td>
+                                    <td>
+                                        <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Delete</a>
+                                        <a href="/update/<%= data[i].id %>" class="btn btn-info">Update</a>
+                                    </td>
+                                    
+                                </tr>
+                            <% } %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 style="text-align: center;">Agendar Cita
+                            <br>
+                        </h1>
+                        <form action="/add" method="post">
+                            <div class="form-group">
+                                <input type="text" name="nombre_du" placeholder="Nombre Dueño" class="form-control">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="text" name="nombre_mascota" placeholder="Nombre Mascota" class="form-control">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="text" name="especie" placeholder="Especie" class="form-control">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="text" name="raza" placeholder="Raza" class="form-control">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="date" name="fecha_cita" placeholder="Fecha Cita" class="form-control">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="time" name="hora_cita" placeholder="Hora Cita" class="form-control">
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Agendar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+
+
+
+<%- include ('partials/footer') %>
