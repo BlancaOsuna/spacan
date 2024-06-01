@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/app.js",
-    "prod": "node src/app.js"
+    "dev": "nodemon --env-file=.env.dev src/app.js",
+    "prod": "node --env-file=.env.prod src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +17,7 @@
     "express-myconnection": "^1.0.4",
     "express-session": "^1.18.0",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1"
+    "mysql2": "^3.10.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"

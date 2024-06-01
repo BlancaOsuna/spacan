@@ -11,14 +11,13 @@ CREATE TABLE users (
 -- Crear la tabla 'citas'
 CREATE TABLE customer(
     id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
     nombre_du INT NOT NULL,
     nombre_mascota VARCHAR(100) NOT NULL,
     especie VARCHAR(50) NOT NULL,
     raza VARCHAR(50),
     fecha_cita DATE NOT NULL,
     hora_cita TIME NOT NULL,
-    user_id INT,
-    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id),
     UNIQUE (fecha_cita, hora_cita)
 );
 

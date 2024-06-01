@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const mysql = require('mysql');
+// const mysql = require('mysql');
+const mysql = require('mysql2');
 const myConnection = require('express-myconnection');
+const fs = require('fs'); 
 
 const app = express();
 
@@ -10,19 +12,28 @@ const app = express();
 const customerRoutes = require('./routes/customer');
 
 // Configuraciones
-app.set('port', process.env.PORT || 3000);
+app.set('port', 3000);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Middlewares : son funciones que se ejecutan antes de las peticiones de los usuarios
 app.use(morgan('dev'));
-app.use(myConnection(mysql, {
-    host: 'localhost',
-    user: 'root',
-    password: 'Mabel123',
-    port: 3306,
-    database: 'grooming'
-}, 'single'));
+
+const mysqlConfig = {
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    port: process.env.port,
+    database: process.env.database
+};
+
+if (process.env.is_prod) {
+    mysqlConfig.ssl = {
+        ca: fs.readFileSync(__dirname + '/../certs/ca.pem')
+    };
+}
+
+app.use(myConnection(mysql, mysqlConfig, 'single'));
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -159,27 +170,27 @@ app.post('/auth', async (req, res) => {
 
 
 //12 - Método para controlar que está auth en todas las páginas
-app.get('/', (req, res)=> {
+app.get('/', (req, res) => {
     console.log('HOOLA');
     console.log(req.session);
-	if (req.session.loggedin) {
-		res.render('index',{
-			login: true,
-			name: req.session.name			
-		});		
-	} else {
-		res.render('index',{
-			login:false,
-			name:'Debe iniciar sesión',			
-		});				
-	}
-	res.end();
+    if (req.session.loggedin) {
+        res.render('index', {
+            login: true,
+            name: req.session.name
+        });
+    } else {
+        res.render('index', {
+            login: false,
+            name: 'Debe iniciar sesión',
+        });
+    }
+    res.end();
 });
 
- //Logout
+//Logout
 //13- Destruye la sesión.
 app.get('/logout', function (req, res) {
-	req.session.destroy(() => {
-	  res.redirect('/') // siempre se ejecutará después de que se destruya la sesión
-	})
+    req.session.destroy(() => {
+        res.redirect('/') // siempre se ejecutará después de que se destruya la sesión
+    })
 });
