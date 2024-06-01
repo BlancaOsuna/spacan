@@ -22,7 +22,7 @@ app.use(morgan('dev'));
 const mysqlConfig = {
     host: process.env.host,
     user: process.env.user,
-    password: process.env.password,
+    password: process.env.pass,
     port: process.env.port,
     database: process.env.database
 };
