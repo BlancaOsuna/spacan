@@ -44,6 +44,13 @@ controller.edit = (req, res) =>{
     const { id } = req.params;
     req.getConnection((err,conn) =>{
         conn.query('SELECT * FROM customer WHERE id = ?', [id], (err,customer ) =>{
+            const now = new Date(customer[0].fecha_cita);
+ 
+            const day = ("0" + now.getDate()).slice(-2);
+            const month = ("0" + (now.getMonth() + 1)).slice(-2);
+        
+            const today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+            customer[0].fecha_cita_update = today;
             res.render('customer_edit', {
                 data: customer[0]
             })
