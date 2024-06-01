@@ -2,6 +2,8 @@ const controller = {};
 
 controller.list = (req, res) => {
 
+    console.log(req.session);
+
     if (!req?.session?.user_id) {
         return res.redirect('/login');
     }
